@@ -15,6 +15,9 @@ public class Customer {
     @Column
     private String email;
 
+    public Customer() {
+    }
+
     public Customer(String name, String email) {
         this.name = name;
         this.email = email;

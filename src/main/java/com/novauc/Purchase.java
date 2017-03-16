@@ -11,14 +11,11 @@ public class Purchase {
     private int id;
 
     @Column
-    private int customer_id;
-
-    @Column
     //private Date
     private String date;
 
     @Column
-    private int credit_card;
+    private String credit_card;
 
     @Column
     private int cvv;
@@ -32,8 +29,8 @@ public class Purchase {
     public Purchase() {
     }
 
-    public Purchase(int customer_id, String date, int credit_card, int cvv, String category, Customer customer) {
-        this.customer_id = customer_id;
+    public Purchase(int id, String date, String credit_card, int cvv, String category, Customer customer) {
+        this.id = id;
         this.date = date;
         this.credit_card = credit_card;
         this.cvv = cvv;
@@ -41,12 +38,12 @@ public class Purchase {
         this.customer = customer;
     }
 
-    public Purchase(int customer_id, String date, int credit_card, int cvv, String category) {
-        this.customer_id = customer_id;
+    public Purchase(String date, String credit_card, int cvv, String category, Customer customer) {
         this.date = date;
         this.credit_card = credit_card;
         this.cvv = cvv;
         this.category = category;
+        this.customer = customer;
     }
 
     public int getId() {
@@ -57,14 +54,6 @@ public class Purchase {
         this.id = id;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
-    }
-
     public String getDate() {
         return date;
     }
@@ -73,11 +62,11 @@ public class Purchase {
         this.date = date;
     }
 
-    public int getCredit_card() {
+    public String getCredit_card() {
         return credit_card;
     }
 
-    public void setCredit_card(int credit_card) {
+    public void setCredit_card(String credit_card) {
         this.credit_card = credit_card;
     }
 
