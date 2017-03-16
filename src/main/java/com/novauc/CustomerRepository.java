@@ -1,5 +1,7 @@
 package com.novauc;
 
 
-public interface CustomerRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface CustomerRepository extends CrudRepository <Customer, Integer> {
 }

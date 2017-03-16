@@ -1,5 +1,7 @@
 package com.novauc;
 
 
-public interface PurchaseRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface PurchaseRepository extends CrudRepository <Purchase, Integer> {
 }
