@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 @Controller
@@ -20,8 +21,12 @@ public class PurchaseController {
     @Autowired
     CustomerRepository customers;
 
-    @RequestMapping(path = "/", method = RequestMethod.POST)
-    public String home(Model model, HttpSession session) {
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public String home(Model model) {
+        ArrayList<Purchase> purchaseArrayList = (ArrayList) purchases.findAll();
+        //ArrayList<Customer> customerArrayList = (ArrayList) customers.findAll();
+        model.addAttribute("purchases", purchaseArrayList);
+        //model.addAttribute("customers", customerArrayList);
         return "home";
     }
 
