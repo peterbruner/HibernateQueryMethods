@@ -1,6 +1,7 @@
 <html>
 <body>
 {{#purchases}}
+{{#customers}}
 <form action="/" method="get">
 
 </form>
@@ -8,11 +9,11 @@
 <ul>
 
 <li>
-   {{category}}, {{credit_card}}, {{cvv}}, {{date}}
+    {{name}}, {{email}}, {{category}}, {{credit_card}}, {{cvv}}, {{date}}
 </li>
 
 </ul>
-
+{{/customers}}
 {{/purchases}}
 </body>
 </html>

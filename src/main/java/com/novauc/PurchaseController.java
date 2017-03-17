@@ -24,9 +24,9 @@ public class PurchaseController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model) {
         ArrayList<Purchase> purchaseArrayList = (ArrayList) purchases.findAll();
-        //ArrayList<Customer> customerArrayList = (ArrayList) customers.findAll();
+        ArrayList<Customer> customerArrayList = (ArrayList) customers.findAll();
         model.addAttribute("purchases", purchaseArrayList);
-        //model.addAttribute("customers", customerArrayList);
+        model.addAttribute("customers", customerArrayList);
         return "home";
     }
 
