@@ -22,9 +22,12 @@ public class PurchaseController {
     CustomerRepository customers;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(Model model) {
+    public String home(Model model, String category) {
         ArrayList<Purchase> purchaseArrayList = (ArrayList) purchases.findAll();
         ArrayList<Customer> customerArrayList = (ArrayList) customers.findAll();
+        if (category != null) {
+            purchaseArrayList = purchases.findByCategory(category);
+        }
         model.addAttribute("purchases", purchaseArrayList);
         model.addAttribute("customers", customerArrayList);
         return "home";
