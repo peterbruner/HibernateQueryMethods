@@ -38,7 +38,7 @@ public class PurchaseController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model, String category, Integer page) {
         page = (page == null) ? 0 : page;
-        PageRequest pr = new PageRequest(page, 10);
+        PageRequest pr = new PageRequest(page, 5);
         Page<Purchase> p;
         if (category != null) {
             p = purchases.findByCategory(pr, category);
