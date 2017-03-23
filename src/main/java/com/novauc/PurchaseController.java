@@ -1,6 +1,8 @@
 package com.novauc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +23,33 @@ public class PurchaseController {
     @Autowired
     CustomerRepository customers;
 
+//    @RequestMapping(path = "/", method = RequestMethod.GET)
+//    public String home(Model model, String category) {
+//        ArrayList<Purchase> purchaseArrayList = (ArrayList<Purchase>) purchases.findAll();
+//        ArrayList<Customer> customerArrayList = (ArrayList<Customer>) customers.findAll();
+//        if (category != null) {
+//            purchaseArrayList = purchases.findByCategory(category);
+//        }
+//        model.addAttribute("purchases", purchaseArrayList);
+//        model.addAttribute("customers", customerArrayList);
+//        return "home";
+//    }
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(Model model, String category) {
-        ArrayList<Purchase> purchaseArrayList = (ArrayList) purchases.findAll();
-        ArrayList<Customer> customerArrayList = (ArrayList) customers.findAll();
+    public String home(Model model, String category, Integer page) {
+        page = (page == null) ? 0 : page;
+        PageRequest pr = new PageRequest(page, 10);
+        Page<Purchase> p;
         if (category != null) {
-            purchaseArrayList = purchases.findByCategory(category);
+            p = purchases.findByCategory(pr, category);
         }
-        model.addAttribute("purchases", purchaseArrayList);
-        model.addAttribute("customers", customerArrayList);
+        else {
+            p = purchases.findAll(pr);
+        }
+        model.addAttribute("purchases", p);
+        model.addAttribute("nextPage", page+1);
+        model.addAttribute("showNext", p.hasNext());
+        model.addAttribute("category", category);
         return "home";
     }
 
