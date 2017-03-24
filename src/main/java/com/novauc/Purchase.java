@@ -12,9 +12,7 @@ public class Purchase {
     private int id;
 
     @Column
-    //private Date
     private String date;
-//    private LocalDateTime date;
 
     @Column
     private String credit_card;

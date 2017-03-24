@@ -24,23 +24,11 @@ public class PurchaseController {
     @Autowired
     CustomerRepository customers;
 
-//    @RequestMapping(path = "/", method = RequestMethod.GET)
-//    public String home(Model model, String category) {
-//        ArrayList<Purchase> purchaseArrayList = (ArrayList<Purchase>) purchases.findAll();
-//        ArrayList<Customer> customerArrayList = (ArrayList<Customer>) customers.findAll();
-//        if (category != null) {
-//            purchaseArrayList = purchases.findByCategory(category);
-//        }
-//        model.addAttribute("purchases", purchaseArrayList);
-//        model.addAttribute("customers", customerArrayList);
-//        return "home";
-//    }
-
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model, String category, Integer page) {
         page = (page == null) ? 0 : page;
         PageRequest pr = new PageRequest(page, 5);
-        Page<Purchase> p = null;
+        Page<Purchase> p;
         if (category != null) {
             p = purchases.findByCategoryOrderByDate(pr, category);
         }
