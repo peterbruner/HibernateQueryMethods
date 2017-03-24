@@ -1,6 +1,7 @@
 package com.novauc;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,6 +14,7 @@ public class Purchase {
     @Column
     //private Date
     private String date;
+//    private LocalDateTime date;
 
     @Column
     private String credit_card;

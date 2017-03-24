@@ -10,5 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface PurchaseRepository extends PagingAndSortingRepository<Purchase, Integer> {
-    Page<Purchase> findByCategory(Pageable pageable, String category);
+    Page<Purchase> findByCategoryOrderByDate(Pageable pageable, String category);
+    Page<Purchase> findAllByOrderByDate(Pageable pageable);
+    //sort here? def in this repo
 }

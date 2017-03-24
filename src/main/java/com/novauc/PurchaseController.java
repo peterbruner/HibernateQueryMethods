@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 @Controller
@@ -39,12 +40,12 @@ public class PurchaseController {
     public String home(Model model, String category, Integer page) {
         page = (page == null) ? 0 : page;
         PageRequest pr = new PageRequest(page, 5);
-        Page<Purchase> p;
+        Page<Purchase> p = null;
         if (category != null) {
-            p = purchases.findByCategory(pr, category);
+            p = purchases.findByCategoryOrderByDate(pr, category);
         }
         else {
-            p = purchases.findAll(pr);
+            p = purchases.findAllByOrderByDate(pr);
         }
         model.addAttribute("purchases", p);
         model.addAttribute("nextPage", page+1);
